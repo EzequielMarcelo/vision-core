@@ -19,7 +19,13 @@ class VideoSource(SourceBase):
         self._thread: Thread = None        
     
     def start(self):
-        self._cap = cv2.VideoCapture(self._camera_id)
+        self._cap = cv2.VideoCapture(self._camera_id, cv2.CAP_DSHOW)
+
+        self._cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+        self._cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+        self._cap.set(cv2.CAP_PROP_FPS, self._desired_fps)
+        self._cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+
         if not self._cap.isOpened():
             raise RuntimeError(
                 f"Failed to connect to the camera: {self._camera_id}"
