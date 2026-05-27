@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vision-core"
+version = "0.1.0"
+description = "Core de visão computacional para videos, imagens, câmeras e processamento de imagem"
+authors = [
+    { name = "Marcelo Gustavo Ezequiel" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    "numpy",
+    "opencv-python",
+    "depthai==2.30.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "ruff",
+    "pytest",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["vision_core*"]
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88
